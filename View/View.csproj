@@ -102,6 +102,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\brands.css" />
     <Content Include="Content\brands.min.css" />
+    <Content Include="Content\bug.ico" />
     <Content Include="Content\fontawesome-all.css" />
     <Content Include="Content\fontawesome-all.min.css" />
     <Content Include="Content\fontawesome.css" />
@@ -196,6 +197,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CategoriaController.cs" />
+    <Compile Include="Controllers\PokemonController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -206,6 +208,10 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.0.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.0.0.min.map" />
+    <Content Include="Views\Categoria\Cadastro.cshtml" />
+    <Content Include="Views\Categoria\Editar.cshtml" />
+    <Content Include="Views\Pokemon\Index.cshtml" />
+    <Content Include="Views\Pokemon\Cadastro.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

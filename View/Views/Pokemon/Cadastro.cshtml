@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "Cadastro";
+}
+
+<h3>Cadastro de Pokemon</h3>
+
+<form action="@Url.Action("Store")" method="post">
+    <div class="row">
+        <div class="col-12">
+            <div class="form-group">
+                <label for="campo-categoria">Categoria</label>
+                <select id="campo-categoria" name="idCategoria"
+                        class="form-control">
+                    <option disabled="disabled" selected="selected">
+                        Selecione uma categoria
+                    </option>
+                @foreach(Model.Categoria categoria in ViewBag.Categorias)
+                {
+                    <option value="@categoria.Id">@categoria.Nome</option>
+                }
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="form-group">
+                <label for="campo-nome">Nome</label>
+                <input type="text" name="nome" id="campo-nome"
+                       class="form-control"/>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <button class="btn btn-success float-right">
+                <i class="fas fa-save"></i> Salvar
+            </button>
+        </div>
+    </div>
+
+</form>
+

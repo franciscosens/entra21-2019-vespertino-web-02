@@ -30,11 +30,12 @@
                         <td>@categoria.Id</td>
                         <td>@categoria.Nome</td>
                         <td>
-                            <a href="" class="btn btn-primary">
+                            <a href="@Url.Action("Editar", new { Id = categoria.Id })" 
+                                class="btn btn-primary">
                                 <i class="fas fa-pen"></i> Editar
                             </a>
 
-                            <a href="" class="btn btn-danger">
+                            <a href="@Url.Action("Apagar", new { Id = categoria.Id})" class="btn btn-danger">
                                 <i class="fas fa-trash"></i> Apagar
                             </a>
                         </td>
