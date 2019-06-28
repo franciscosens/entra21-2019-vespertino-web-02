@@ -212,6 +212,7 @@
     <Content Include="Views\Categoria\Editar.cshtml" />
     <Content Include="Views\Pokemon\Index.cshtml" />
     <Content Include="Views\Pokemon\Cadastro.cshtml" />
+    <Content Include="Views\Pokemon\Editar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

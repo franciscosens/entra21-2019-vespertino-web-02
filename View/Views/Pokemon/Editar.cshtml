@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "Editar";
+}
+
+<h3>Editar Pokemon</h3>
+
+<form action="@Url.Action("Update")" method="POST">
+    <input type="hidden"  name="id" value="@ViewBag.Pokemon.Id" />
+
+    <div class="row">
+        <div class="col-12">
+            <div class="form-group">
+                <label for="campo-categoria">Categoria</label>
+                <select id="campo-categoria" name="idCategoria"
+                        class=" form-control">
+                    @foreach(Model.Categoria categoria in ViewBag.Categorias)
+                    {
+                        if(categoria.Id == ViewBag.Pokemon.IdCategoria)
+                        {
+                        <option value="@categoria.Id"
+                                selected="selected">@categoria.Nome</option>
+                        }
+                        else
+                        {
+                            <option value="@categoria.Id">@categoria.Nome</option>
+                        }
+                    }
+
+
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="form-group">
+                <label for="campo-nome">Nome</label>
+                <input type="text" name="nome" class="form-control"
+                       id="campo-nome" value="@ViewBag.Pokemon.Nome" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <button class="btn btn-success" type="submit">
+                <i class="fas fa-save"></i> Salvar
+            </button>
+        </div>
+    </div>
+
+</form>
+

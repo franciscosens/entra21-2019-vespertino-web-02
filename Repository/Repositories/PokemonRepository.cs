@@ -15,12 +15,29 @@ namespace Repository.Repositories
     {
         public bool Alterar(Pokemon pokemon)
         {
-            throw new NotImplementedException();
+            SqlCommand comando = Conexao.AbrirConexao();
+            comando.CommandText = @"UPDATE pokemons SET
+nome = @NOME,
+id_categoria = @ID_CATEGORIA
+WHERE id = @ID";
+            comando.Parameters.AddWithValue("@ID", pokemon.Id);
+            comando.Parameters.AddWithValue("@NOME", pokemon.Nome);
+            comando.Parameters.AddWithValue("@ID_CATEGORIA",
+                pokemon.IdCategoria);
+            int quantidade = comando.ExecuteNonQuery();
+            comando.Connection.Close();
+            return quantidade == 1;
+
         }
 
         public bool Apagar(int id)
         {
-            throw new NotImplementedException();
+            SqlCommand comando = Conexao.AbrirConexao();
+            comando.CommandText = "DELETE FROM pokemons WHERE id = @ID";
+            comando.Parameters.AddWithValue("@ID", id);
+            int quantidade = comando.ExecuteNonQuery();
+            comando.Connection.Close();
+            return quantidade == 1;
         }
 
         public int Inserir(Pokemon pokemon)
@@ -40,7 +57,24 @@ VALUES (@ID_CATEGORIA, @NOME)";
 
         public Pokemon ObterPeloId(int id)
         {
-            throw new NotImplementedException();
+            SqlCommand comando = Conexao.AbrirConexao();
+            comando.CommandText = "SELECT * FROM pokemons WHERE id = @ID";
+            comando.Parameters.AddWithValue("@ID", id);
+            DataTable tabela = new DataTable();
+            tabela.Load(comando.ExecuteReader());
+            comando.Connection.Close();
+
+            if(tabela.Rows.Count == 0)
+            {
+                return null;
+            }
+
+            DataRow linha = tabela.Rows[0];
+            Pokemon pokemon = new Pokemon();
+            pokemon.Id = Convert.ToInt32(linha["id"]);
+            pokemon.IdCategoria = Convert.ToInt32(linha["id_categoria"]);
+            pokemon.Nome = linha["nome"].ToString();
+            return pokemon;
         }
 
         public List<Pokemon> ObterTodos(string pesquisa)
@@ -63,6 +97,8 @@ INNER JOIN categorias ON(pokemons.id_categoria = categorias.id)";
                 pokemon.Id = Convert.ToInt32(linha["Id"]);
                 pokemon.Nome = linha["Nome"].ToString();
                 pokemon.IdCategoria = Convert.ToInt32(linha["CategoriaId"]);
+
+
                 pokemon.Categoria = new Categoria();
                 pokemon.Categoria.Id = Convert.ToInt32(linha["CategoriaId"]);
                 pokemon.Categoria.Nome = linha["CategoriaNome"].ToString();
